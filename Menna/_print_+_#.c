@@ -6,14 +6,18 @@
  * Return: number of chars printed.
  */
 
-int pr_flag(char flag, va_list args)
+int pr_flag(char *flag, va_list args)
 {
-	int sum = 0;
+	int sum = 0, i = 0;
 
-	if (flag == '+')
-		sum += pr_sign(args);
-	if (flag == ' ')
-		sum += pr_space(args);
+	while (flag[i])
+	{
+		if (flag[i] == '+')
+			sum += pr_sign(args);
+		if (flag[i] == ' ')
+			sum += pr_space(args);
+		i++;
+	}
 	return (sum);
 }
 

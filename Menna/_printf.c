@@ -22,8 +22,9 @@ int _printf(const char *format, ...)
 
 {
 	char *list = "scdibuoxXSprR%";
-	char *flag = "+ ";
-	int sum = 0, i = 0;
+	char *flag = "#+ ";
+	char f[2];
+	int sum = 0, i = 0, j = 0;
 	va_list args;
 
 	va_start(args, format);
@@ -44,7 +45,16 @@ int _printf(const char *format, ...)
 		else if (strchr(list, format[i + 1]) != 0)
 			sum += print_spec(format[i + 1], args);
 		else if (strchr(flag, format[i + 1]) != 0)
-			sum += pr_flag(format[i + 1], args);
+		{
+			while (strchr(list, format[i + 1]) == 0)
+			{
+				f[j] = format[i + 1];
+				j++;
+				i++;
+			}
+			sum += pr_flag(f, args);
+			sum += print_spec(format[i + 1], args);
+		}
 		else
 		{
 			sum += print(format[i]);

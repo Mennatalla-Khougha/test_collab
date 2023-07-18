@@ -15,14 +15,14 @@ void bubble_sort(int *array, size_t size)
                 tmp = array[j];
                 array[j] = array[j + 1];
                 array[j + 1] = tmp;
+                for (n = 0; n < size; n++)
+                {
+                    printf("%d", array[n]);
+                    if (n != size - 1)
+                        printf(", ");
+                }
+                printf("\n");
             }
         }
-        for (n = 0; n < size; n++)
-        {
-            printf("%d", array[n]);
-            if (n != size - 1)
-                printf(", ");
-        }
-        printf("\n");
     }
 }
